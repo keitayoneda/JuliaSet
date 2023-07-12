@@ -6,6 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_compile_options(-Wall -Wextra -Wpedantic -Werror)
+find_package(OpenMP REQUIRED)
+if(OPENMP_FOUND)
+  message("OpenMP FOUND")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS}")
+endif()
 
 file(GLOB MAIN_SOURCES "*.cpp")
 add_executable(main ${MAIN_SOURCES})
