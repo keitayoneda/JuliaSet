@@ -118,7 +118,9 @@ void calcOnePixelColor(float gradient, float &r, float &g, float &b) {
 void calcColors(double x_min, double x_max, double y_min, double y_max) {
   std::chrono::system_clock::time_point start, end;
   start = std::chrono::system_clock::now();
+#ifdef OPENMP
 #pragma omp parallel for
+#endif
   for (int i = 0; i < n_col; ++i) {
     for (int j = 0; j < n_raw; ++j) {
       [[maybe_unused]] double x = static_cast<double>(i) /
@@ -306,6 +308,9 @@ int main() {
     glfwSwapBuffers(window);
     glfwPollEvents();
     end = std::chrono::system_clock::now();
+    std::cout << "duration: "
+              << std::chrono::duration<double>(end - start).count() * 1000
+              << " ms" << std::endl;
     std::chrono::duration<double> elapsed_seconds = end - start;
     if (elapsed_seconds.count() < 0.1) {
       std::this_thread::sleep_for(std::chrono::milliseconds(

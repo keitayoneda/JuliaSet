@@ -182,6 +182,9 @@ int main() {
     glfwSwapBuffers(window);
     glfwPollEvents();
     end = std::chrono::system_clock::now();
+    std::cout << "duration: "
+              << std::chrono::duration<double>(end - start).count() * 1000
+              << " ms" << std::endl;
     std::chrono::duration<double> elapsed_seconds = end - start;
     if (elapsed_seconds.count() < 0.1) {
       std::this_thread::sleep_for(std::chrono::milliseconds(

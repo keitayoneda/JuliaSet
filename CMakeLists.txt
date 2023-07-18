@@ -18,6 +18,9 @@ target_include_directories(cpu PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 target_link_libraries(cpu glfw GLEW GL)
 target_compile_definitions(
   cpu PUBLIC SHADER_DIR="${CMAKE_CURRENT_LIST_DIR}/shader/")
+if(OPENMP)
+  target_compile_definitions(cpu PUBLIC OPENMP)
+endif()
 
 set(GPU_SOURCES gpu.cpp shader.cpp shader.hpp)
 add_executable(gpu ${GPU_SOURCES})
