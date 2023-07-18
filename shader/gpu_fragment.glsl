@@ -30,7 +30,7 @@ float calcGradient(float x, float y, int maxIterations){
 
 void main(){
   float x = map(gl_FragCoord.x, 0, window_width, boundMin.x, boundMax.x);
-  float y = map(gl_FragCoord.y, 0, window_height, boundMin.y, boundMax.y);
+  float y = map(gl_FragCoord.y, 0, window_height, boundMax.y, boundMin.y);
 
   float gradient = calcGradient(x, y, maxIterations);
   color = vec3(-gradient*(gradient-1.0)*2, gradient*(2.0-gradient), gradient);
