@@ -33,5 +33,5 @@ void main(){
   float y = map(gl_FragCoord.y, 0, window_height, boundMax.y, boundMin.y);
 
   float gradient = calcGradient(x, y, maxIterations);
-  color = vec3(-gradient*(gradient-1.0)*2, gradient*(2.0-gradient), gradient);
+  color = vec3(-gradient*(gradient-1.0)*2, gradient*(2.0-gradient), sqrt(gradient));
 }
